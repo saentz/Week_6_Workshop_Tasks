@@ -87,14 +87,40 @@ int main()
 
 void sort_ascending(struct node **startPtr, int count_nodes)
 {
+    struct node* tempPtr = NULL;
     struct node* prevPtr = NULL;
     struct node* curPtr = NULL;
-	struct node* tempPtr = NULL;
-	struct node* temp1Ptr = NULL;
-	struct node* temp2Ptr = NULL;
 
-    for (int i = 1; i < count_nodes; i++)
+    for (int i = 0; i < count_nodes; i++)
     {
-		//You may write your code here
-	}
+        prevPtr = *startPtr;
+        curPtr = (*startPtr)->nextPtr;
+
+        while (curPtr != NULL)
+        {
+            if (prevPtr->data > curPtr->data)
+            {
+                if (prevPtr == *startPtr)
+                {
+                    *startPtr = curPtr;
+                }
+                else
+                {
+                    tempPtr->nextPtr = curPtr;
+                }
+
+                prevPtr->nextPtr = curPtr->nextPtr;
+                curPtr->nextPtr = prevPtr;
+
+                tempPtr = curPtr;
+                curPtr = prevPtr->nextPtr;
+            }
+            else
+            {
+                tempPtr = prevPtr;
+                prevPtr = prevPtr->nextPtr;
+                curPtr = curPtr->nextPtr;
+            }
+        }
+    }
 }
